@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      #sample {
+         border: 0px solid black;
+         width: 750px;
+      }
+
+      #sample::after {
+         content: '';
+         display: block;
+         clear: both;
+      }
+
+      #sample > img {
+         width: 150px;
+         float: left;
+         border-radius: 10px;
+         cursor: pointer;
+         opacity: .5;
+         transition: opacity .5s;
+      }
+
+      #sample > img:hover {
+         opacity: 1;
+      }
+
+      #content {
+         width: 750px;
+      }
+
+      #content::after {
+         content: '';
+         display: block;
+         clear: both;
+      }
+
+      #content > img {
+         width: 375px;
+         border-radius: 15px;
+         float: left;
+      }
+   </style>
+</head>
+<body>
+   <!-- ex40_content.html -->
+
+   <div id="sample">
+      <img src="../images/cat01.jpg">
+      <img src="../images/cat02.jpg">
+      <img src="../images/cat03.jpg">
+      <img src="../images/cat04.jpg">
+      <img src="../images/cat05.jpg">
+      <img src="../images/dog01.jpg">
+      <img src="../images/dog02.jpg">
+      <img src="../images/dog03.jpg">
+      <img src="../images/dog04.jpg">
+      <img src="../images/dog05.jpg">
+   </div>
+   <hr>
+   <input type="button" value="clear" id="btnClean">
+   <hr>
+   <div id="content"></div>
+
+   <script>
+      
+      const btnClean = document.getElementById('btnClean');
+      const content = document.getElementById('content');
+      const img = document.getElementsByTagName('img');
+
+      //1. img 10개에 클릭 이벤트 추가
+      //2. 클릭 이벤트 > 누굴 클릭했는지 확인 > 동적으로 <img> 생성 > content에 추가
+      //3. btnClean에 클릭 이벤트 추가 > content에 내용물 삭제
+
+      for (let i=0; i<img.length; i++) {
+         img[i].onclick = function() {
+            
+            //alert(event.srcElement.src);
+            let filename = getFileName(event.srcElement.src);
+            //alert(filename);
+
+            let temp = '<img src="../images' + filename + '">';
+            //alert(temp);
+
+            //content.innerHTML += temp; //누적
+            content.innerHTML = temp + content.innerHTML; //누적
+
+         };
+      }
+
+      function getFileName(path) {
+         let index = path.lastIndexOf('/');
+         return path.substr(index);
+      }
+
+
+      btnClean.onclick = function() {
+         
+         if (content.innerHTML != '') {
+           if (confirm('정말 삭제하겠습니까?')) {
+               content.innerHTML = '';
+            }
+         }
+      };
+
+   </script>
+
+</body>
+</html>

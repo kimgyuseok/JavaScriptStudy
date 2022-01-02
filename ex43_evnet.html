@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+
+      .box{
+         border: 1px solid black;
+         background-color: gold;
+         width: 200px;
+         height: 200px;
+      }
+
+   </style>
+</head>
+<body>
+   <input type="button" value="버튼1" id="btn1">
+   <input type="button" value="버튼2" id="btn2">
+   <hr>
+   <div id="box1" class="box"></div>
+   
+   <script>
+      const btn1 = document.getElementById('btn1');
+      const btn2 = document.getElementById('btn2');
+      const box1 = document.getElementById('box1');
+
+      //1. BOM Event
+      //btn1.onclick = 함수;
+      btn1.onclick = m1;
+      //btn1.onclick = null;
+
+      //2.DOM Event
+      // btn1.addEventListener('click',function(){
+      //    alert('click');
+      // });
+
+      // btn1.addEventListener('click',m1);
+      
+      function m1(){
+         alert('m1');
+      }
+
+      function m2(){
+         alert('m2');
+      }
+
+      btn1.onclick = function(){
+         // box1.classNmae = 'box one three';
+
+         box1.classList.add('one');
+         box1.classList.add('two');
+         box1.classList.add('three');
+      }
+
+      btn2.onclick = function(){
+         box1.classList.remove('two');
+      }
+   </script>
+</body>
+</html>

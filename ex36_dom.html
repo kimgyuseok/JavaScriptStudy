@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+
+      .txt { display: block; margin-bottom: 10px; }
+
+   </style>
+</head>
+<body>
+   <!-- ex36_dom.html -->
+
+   <form name="form1">
+      <h1 id="title">DOM</h1>
+      <div>
+         <input type="text" name="txt1" id="txt1" class="txt">
+         <input type="text" name="txt2" id="txt2" class="txt">
+         <input type="text" name="txt3" id="txt3" class="txt">
+      </div>
+   </form>
+
+   <script>
+
+      /*
+      
+         DOM, Document Object Model
+         - 문서의 실제 내용을 바탕으로 트리구조를 제공
+         - 검색 도구 다양
+         - 조작 도구 다양
+         - 모든 태그 인식
+         - DOM의 모든 기능은 BOM의 document로부터 제공
+
+
+         DOM에서 제공하는 태그 검색 도구
+         1. id 검색        > document.getElementById('id')
+         2. class 검색     > document.getElementsByClassName('class')
+         3. name 검색      > document.getElementsByName('name')
+         4. 태그명검색      > document.getElementsByTagName('tag')
+         ------------------------------------------------------------
+         5. 선택자검색      > document.querySelector('selector')
+                           > document.querySelectorAll('selector')
+
+      */
+
+
+      var txt1 = document.getElementById('txt1');
+      txt1.value = '사과';
+
+      var title = document.getElementById('title');
+      title.align = 'center';
+
+
+
+      var txt = document.getElementsByClassName('txt');
+      
+      for (var i=0; i<txt.length; i++) {
+         txt[i].value = i;
+      }
+
+
+
+      var txt = document.getElementsByName('txt1');
+      //alert(txt.length);
+
+      txt[0].value = '바나나';
+
+
+
+      var txt = document.getElementsByTagName('input');
+      //alert(txt.length);
+
+      for (var i=0; i<txt.length; i++) {
+         txt[i].value = i;
+      }
+      
+
+      console.clear();
+
+
+      var txt1_1 = document.form1.txt1; //BOM
+      var txt1_2 = document.getElementById('txt1'); //DOM
+
+      console.log(typeof txt1_1);
+      console.log(typeof txt1_2);
+
+      console.log(txt1_1.constructor.name); //HTMLInputElement
+      console.log(txt1_2.constructor.name);
+
+      console.log(txt1_1 == txt1_2);
+      console.log(txt1_1 === txt1_2);
+
+
+
+      //BOM 검색 > BOM 기능 사용
+      //DOM 검색 > DOM 기능 사용
+      //BOM 검색 > DOM 기능 사용
+      //DOM 검색 > BOM 기능 사용
+
+      //BOM > BOM
+      txt1_1.value = '100'; //BOM
+
+      //<option>
+      //BOM > DOM
+      //sel1.options[0].innerText = '옵션';
+
+      //DOM > DOM
+      //txt1_2.XXX
+
+      //DOM > BOM
+      txt1_2.value = '200'; //BOM
+
+
+   </script>
+
+</body>
+</html>

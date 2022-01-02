@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <style>
+
+      .table { border: 1px solid black; border-collapse: collapse; }
+      .table td { border: 1px solid black; width: 100px; height: 100px; }
+
+   </style>
+
+</head>
+<body>
+   <!-- ex44_DOM.html -->
+
+   <input type="button" value="버튼1" id="btn1">
+   <input type="button" value="버튼2" id="btn2">
+   <input type="button" value="버튼3" id="btn3">
+   <hr>
+   <div id="content1"></div>
+
+   <script>
+
+      const btn1 = document.getElementById('btn1');
+      const btn2 = document.getElementById('btn2');
+      const btn3 = document.getElementById('btn3');
+      const content1 = document.getElementById('content1');
+
+      btn1.onclick = function() {
+
+         //1. 동적으로 태그 생성하기
+         //- 간단한 버전(innerHTML)
+         //content1.innerHTML = '<input type="text" size="50">';
+         
+
+         //- 체계적 조작 가능 버전
+         
+         //태그 생성
+         const input = document.createElement('input'); //<input>
+
+         //속성 추가
+         //input.type = 'text'; //BOM
+
+         //const atype = document.createAttribute('type'); //type=""
+         //atype.value = 'radio';
+         //input.setAttributeNode(atype); //<input type="text">
+
+         input.setAttribute('type', 'text'); //DOM
+         input.setAttribute('size', 50);
+         
+         content1.appendChild(input);
+
+
+         //<p align="center">문단입니다.</p>
+         //content1.innerHTML += '<p align="center">문단입니다.</p>';
+
+         const p = document.createElement('p'); //<p></p>
+
+         p.setAttribute('align', 'center'); //<p align='center'></p>
+
+         const txt = document.createTextNode();
+         //txt.nodeValue = '문단입니다.';
+         console.log(txt.nodeType);
+         p.appendChild(txt); //<p align='center'>문단입니다.</p>
+
+         //p.innerText = '문단입니다.';
+
+         content1.appendChild(p);
+
+         //content1.removeChild(input);
+
+      };
+
+
+      btn2.onclick = function() {
+
+         //고양이 x 5
+         for (let i=1; i<=5; i++) {
+
+            //temp += '<img>';
+
+            const img = document.createElement('img');
+
+            img.setAttribute('src', '../images/cat0' + i + '.jpg');
+
+            img.setAttribute('title', '고양이' + i);
+
+            img.addEventListener('click', function() {
+               content1.removeChild(event.srcElement);
+            });
+
+            content1.appendChild(img);
+            
+            //content1.append(img);
+            //content1.prepend(img);
+
+         }
+
+      };
+
+
+      btn3.onclick = function() {
+
+         //3 x 3 테이블
+         // -> td 이벤트 추가
+
+         const table = document.createElement('table');
+
+         for (let i=0; i<3; i++) {
+            
+            const tr = document.createElement('tr');
+
+            for (let j=0; j<3; j++) {
+
+               const td = document.createElement('td');
+
+               td.addEventListener('mouseover', function() {
+                  event.srcElement.setAttribute('bgcolor', 'gold');
+               });
+
+               td.addEventListener('mouseout', function() {
+                  event.srcElement.setAttribute('bgcolor', 'transparent');
+               });
+
+               tr.append(td);
+
+            }
+
+            table.appendChild(tr);
+
+         }
+
+         table.classList.add('table');
+
+         content1.appendChild(table);
+      };
+
+   </script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <!-- ex32_hoisting.html -->
+
+   <script>
+
+      //호이스팅, Hoisting
+      //- 변수 호이스팅, 함수 호이스팅
+      //- 이상한 현상? 변수를 선언하기도 전에 이미 생성이 되어있다???
+      //- 코드를 실행하기 전에 변수선언문과 함수선언문을 해당 스코프의 최상단으로 끌어올린다.
+
+      function m1() {
+
+         var a = 10;
+         console.log('a', a);
+
+         console.log('b', b);
+         var b = 20;
+
+
+         let c = 30;
+         console.log('c', c);
+
+         //Cannot access 'd' before initialization
+         //variable 'd' is not defined
+         //console.log('d', d); 
+         let d = 40;
+
+      }
+
+      m1();
+
+
+
+      //질문? i가 왜 루프밖에서 접근이 가능한가?
+      //1. var 선언문은 function-scoped라서.. > for문 인식 못함
+      //2. 변수 호이스팅이 발생해서..
+      
+      for (var i=0; i<10; i++) {
+         console.log(i);
+      }
+
+      console.log('루프 밖', i);
+
+
+   </script>
+</body>
+</html>

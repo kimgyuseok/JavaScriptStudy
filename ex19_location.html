@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <!-- ex19_location.html -->
+
+   <h1>location</h1>
+
+   <input type="button" name="btn1" value="버튼1">
+   <hr>
+   <input type="text">
+
+   <script>
+
+      window.document.all.btn1.onclick = m1;
+
+      /*
+      
+         location 객체
+         - window > location
+         - 현재 창이 보고있는 페이지의 URL과 관련
+      
+      */
+
+      function m1() {
+         // console.log(window.location.host); //192.168.50.109:5500
+         // console.log(window.location.hostname); //192.168.50.109
+         // console.log(window.location.href); //http://192.168.50.109:5500/javascript/ex19_location.html
+         // console.log(window.location.protocol); //http:
+         // console.log(window.location.port); //5500
+
+
+         //*** 링크
+         window.location.href = 'https://naver.com';
+
+      }
+
+
+      //전역 이벤트
+      window.onkeydown = m2;
+
+      function m2() {
+
+         //alert(event.keyCode);
+         if (event.keyCode == 49) {
+            location.href = 'http://naver.com';
+         } else if (event.keyCode == 50) {
+            location.href = 'http://google.com';
+         } if (event.keyCode == 51) {
+            location.href = 'http://daum.net';
+         } 
+
+      }
+
+
+      //window를 생략할 수 있다.
+      document.all.btn1.onmouseover = m3;
+
+      function m3() {
+         location.href = 'ex18_screen.html';
+      }
+
+   </script>
+</body>
+</html>

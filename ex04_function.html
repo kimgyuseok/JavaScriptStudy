@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script>
+
+      /*
+
+         Java Method
+         public [static] int m1(int num) {
+
+            return 10;
+         }
+
+         JavaScript Function
+         function m1(num) {
+
+            return 10;
+         }
+
+      */
+
+      function m1() {
+         console.log('m1');
+      }
+
+      m1();
+
+
+      function m2(name) {
+         console.log('name: ' + name);
+      }
+
+      m2('홍길동');
+      m2('아무개');
+      m2('하하하');
+
+
+
+      function m3(item1, item2) {
+         console.log('m3');
+         //console.log(arguments); //내장 배열
+         console.log(arguments[0]);
+         console.log(arguments[1]);
+
+         console.log(item1, item2); //권장(기존 방식)
+      }
+
+      m3('HTML');
+      m3('HTML', 'CSS');
+
+
+      function m4() {
+         return 100;
+      }
+
+      console.log(m4());
+      console.clear();
+
+      //------------------------------------
+
+      //undefined > (변수 선언 후) 초기화를 하지 않는 상태
+      //null > 명시적으로 비어있는 상태
+
+      var num;
+      console.log(num);
+
+      num = null;
+      console.log(num);
+      console.clear();
+
+      //연산자
+      console.log(100 == '100');    //자료형 비교를 안하는 비교연산자
+      console.log(100 === '100');   //우리가 아는 비교연산자
+
+      console.log(100 != '100');
+      console.log(100 !== '100');
+
+      console.log(null == undefined);
+      console.log(null === undefined);
+      
+
+
+   </script>
+</head>
+<body>
+   <!-- ex04_function.html -->
+
+
+</body>
+</html>

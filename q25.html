@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#tbl1{
+			border : 1px solid black;
+			border-collapse: collapse;
+		}
+		#tbl1 td {
+			border : 1px solid black;
+			width: 100px;
+			height: 100px;
+		}
+	
+		.disabled {
+			background-color: #777;
+		}
+	
+		html, body {
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="main m800">
+		<div class="mainHeader">
+			<h1>테이블 셀 이동하기 + 키이벤트 + 장애물<i class="far fa-lightbulb" style="font-size: .74em;margin-left:10px;cursor: pointer;" onclick="toggleHint();" title="약간의 도움말"></i></h1>
+			<div>방향키에 맞춰 활성화된 셀을 이동하시오.</div>
+			<ul>
+				<li>상,하,좌,우</li>
+				<li>검은색 셀은 장애물이라 이동할 수 없습니다.</li>
+			</ul>
+			<div class="code"><i class="fas fa-keyboard"></i> window.onkeydown, td.className</div>
+		</div>
+		<table id="tbl1" class="table" style="margin: 50px auto;">
+			<tbody><tr>
+				<td bgcolor="cornflowerblue"></td>
+				<td bgcolor="transparent"></td>
+				<td class="disabled"></td>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+			</tr>
+			<tr>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+			</tr>
+			<tr>
+				<td class="disabled"></td>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+				<td class="disabled"></td>
+				<td bgcolor="transparent"></td>
+			</tr>
+			<tr>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+				<td class="disabled"></td>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+			</tr>
+			<tr>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+				<td bgcolor="transparent"></td>
+				<td class="disabled"></td>
+			</tr>
+		</tbody></table>
+	</div>
+
+	<script>
+	
+		var cell;
+		var index = 0;
+		
+		window.onload = function() {
+			cell = document.getElementsByTagName("td");
+			cell[index].bgColor = "cornflowerblue";
+		};
+		
+		window.onkeydown = function() {
+			
+			clear();
+			
+			if (event.keyCode ==  37) { //좌
+			
+				index--;
+				if (index < 0 || index % 5 == 4) index++;
+				if (cell[index].className == "disabled") { index++; }
+			
+			} else if (event.keyCode == 39) { //우
+				
+				index++;
+				if (index >= cell.length || index % 5 == 0) index--;
+				if (cell[index].className == "disabled") { index--; }
+			
+			} else if (event.keyCode == 38) { //상
+				
+				index-=5;
+				if (index < 0) index+=5;
+				if (cell[index].className == "disabled") { index+=5; }
+			
+			} else if (event.keyCode == 40) { //하
+				
+				index+=5;
+				if (index >= cell.length) index-=5;
+				if (cell[index].className == "disabled") { index-=5; }
+			
+			}
+			
+			
+			cell[index].bgColor = "cornflowerblue";
+			
+		};
+		
+		function clear() {
+			
+			for (var i=0; i<cell.length; i++) {
+				if (cell[i].className != "disabled") {
+					cell[i].bgColor = "transparent";
+				}
+			}
+			
+		}
+		
+	</script>
+</body>
+
+</html>

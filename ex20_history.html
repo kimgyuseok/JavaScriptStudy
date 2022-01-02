@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <!-- ex20_history.html -->
+
+   <input type="button" name="btn1" value="뒤로가기">
+   <input type="button" name="btn2" value="앞으로가기">
+
+   <script>
+
+      document.all.btn1.onclick = m1;
+      document.all.btn2.onclick = m2;
+
+      //현재 > 네이버 > 구글 > 현재 > 다음 > 예스24
+
+      function m1() {
+         //window.history.back(); //뒤로가기
+         //window.history.forward(); //앞으로가기
+         //window.history.go(); //사용자정의
+
+         history.back(); //*****
+         //history.go(-1);
+      }
+
+      function m2() {
+         history.forward();
+         //history.go(1);
+      }
+
+
+   </script>
+
+</body>
+</html>
